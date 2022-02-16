@@ -27,11 +27,14 @@ function handleShowModal(data){
         <Card.Text>
             Release_Date {props.movie.release_date} 
         </Card.Text>
-        <Button variant="primary" onClick={()=>{handleShowModal(props.movie) }}>Show Modal</Button>
+        <Card.Text>
+            {props.movie.comment ? props.movie.comment : 'user added no comment'}
+        </Card.Text>
+        <Button variant="primary" onClick={()=>{handleShowModal(props.movie) }}>More Info</Button>
     </Card.Body>
 </Card>
 {
-chosenMovie &&  <ModalMovie show={show} handleClose={handleClose} chosenMovie={chosenMovie}/>
+chosenMovie &&  <ModalMovie show={show} handleClose={handleClose} chosenMovie={chosenMovie} updateMovies={props.updateMovies}/>
 }</> )
 
 

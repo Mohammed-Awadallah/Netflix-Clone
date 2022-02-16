@@ -3,6 +3,8 @@ import MovieList from './MovieList';
 
 
 function Home() {
+
+   
     const [movie, getMovie] = useState();
     const getMovies = async () => {
         try {
@@ -14,21 +16,31 @@ function Home() {
             console.log("error", error);
         }
     };
+    function updateMovies(updateMovie,id) {
+        let updatedMovie = movie.map(movie=>{
+            if(movie.id === id){
+                movie.comment = updateMovie.comment;
+                return movie;
+            }else{
+                return movie;
+            }
+        })
+        getMovie(updatedMovie);
+    }
 
     useEffect(() => {
         getMovies();
     }, []);
 
     return (
-        <>
+        <div>
             <h1>Home Page</h1>
+            <h2>Movie List:</h2>
                 {
-                    movie && (<MovieList movies={movie} />)
+                movie && (<MovieList movies={movie} updateMovies={updateMovies} />)
                 }
-         
-
-        </>
-    )
+        </div>
+  )
 }
 
 export default Home;
