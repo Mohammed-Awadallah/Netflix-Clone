@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MovieList from './MovieList';
 
 
+
 function Home() {
 
    
@@ -34,8 +35,9 @@ function Home() {
 
     return (
         <div>
-            <h1>Home Page</h1>
-            <h2>Movie List:</h2>
+            
+            
+            
                 {
                 movie && (<MovieList movies={movie} updateMovies={updateMovies} />)
                 }
