@@ -5,9 +5,7 @@ export default function MovieList(props) {
 
     return (
         <div className = "MovieList"
-        style={{display : 'flex', flexWrap : 'wrap'}}>
-            
-
+        style={{display : 'flex', flexWrap : 'wrap', justifyContent : 'space-around', }}>
             {
                 props.movies.map(movie => {
                     return (
@@ -17,7 +15,6 @@ export default function MovieList(props) {
                     )
                 })
             }
-          
         </div>
     )
 }

@@ -12,8 +12,25 @@ export default function ModalMovie(props) {
         const updateMovie = { ...props.chosenMovie, comment }
         props.updateMovies(updateMovie, props.chosenMovie.id)
     }
+   async function handleAddFav(event , movie){
+       event.preventDefault();
+       const sentData = {
+        title : movie.title,
+        release_date : movie.release_date,
+        poster : movie.poster,
+        overview : movie.overview,
+        comment : movie.comment
+       }
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/addMovie` , {
+            method : 'POST',
+            headers:{'content-Type': 'application/json'},
+            body : JSON.stringify(sentData)
+        })
+        const data = await response.json();
+
+    }
     return (
-        <>
+        <div>
             <Modal show={props.show} onHide={props.ModalMoviehandleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>{props.chosenMovie.title}</Modal.Title>
@@ -32,9 +49,9 @@ export default function ModalMovie(props) {
 
                             </Form.Text>
                         </Form.Group>
-                        {/* <Button variant="primary" type="submit">
-                            Submit
-                        </Button> */}
+                        <Button variant="primary" type="submit" onClick={(event)=>{handleAddFav(event,props.chosenMovie)}}>
+                            Add to Favourite
+                        </Button>
                     </Form>
                     <Button variant="secondary" onClick={props.handleClose}>
                         Close
@@ -44,6 +61,6 @@ export default function ModalMovie(props) {
                     </Button>
                 </Modal.Footer>
             </Modal>
-        </>
+        </div>
     )
 }

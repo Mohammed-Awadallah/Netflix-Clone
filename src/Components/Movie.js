@@ -17,20 +17,21 @@ function handleShowModal(data){
 
     return(
         <>
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '200px', backgroundColor : '#bcbcbc', marginBottom : '30px', height : '550px'}}>
     <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`} />
     <Card.Body>
         <Card.Title>{props.movie.title}</Card.Title>
-        <Card.Text>
-            Overview:  {props.movie.overview}
+        <Card.Text style = {{fontSize : '10px', fontWeight : 'bold',  border: '1px solid black', borderRadius: '12px' , padding: '2px'}}>
+            Overview:  {props.movie.overview.substring(0,180)}
         </Card.Text>
         <Card.Text>
-            Release_Date {props.movie.release_date} 
+            {props.movie.comment ? props.movie.comment : ''}
         </Card.Text>
         <Card.Text>
-            {props.movie.comment ? props.movie.comment : 'user added no comment'}
+            {props.movie.release_date} 
         </Card.Text>
-        <Button variant="primary" onClick={()=>{handleShowModal(props.movie) }}>More Info</Button>
+        
+        <Button style={{ position: 'absolute',width: '50%' , bottom: '0', left : '100px'}} variant="primary" onClick={()=>{handleShowModal(props.movie) }}>More Info</Button>
     </Card.Body>
 </Card>
 {
